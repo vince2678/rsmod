@@ -175,7 +175,14 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         val def = world.definitions.get(ItemDef::class.java, item)
         val slot = def.inventoryMenu.indexOfFirst { it?.toLowerCase() == opt }
 
-        check(slot != -1) { "Option \"$option\" not found for item $item [options=${def.inventoryMenu.filterNotNull().filter { it.isNotBlank() }}]" }
+        try {
+            check(slot != -1) { "Option \"$option\" not found for item $item [options=${def.inventoryMenu.filterNotNull().filter { it.isNotBlank() }}]" }
+        }
+        catch (e : Exception)
+        {
+            e.printStackTrace();
+            return;
+        }
 
         r.bindItem(item, slot + 1, logic)
     }
@@ -189,7 +196,14 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         val def = world.definitions.get(ItemDef::class.java, item)
         val slot = def.equipmentMenu.indexOfFirst { it?.toLowerCase() == opt }
 
-        check(slot != -1) { "Option \"$option\" not found for item equipment $item [options=${def.equipmentMenu.filterNotNull().filter { it.isNotBlank() }}]" }
+        try {
+            check(slot != -1) { "Option \"$option\" not found for item equipment $item [options=${def.equipmentMenu.filterNotNull().filter { it.isNotBlank() }}]" }
+        }
+        catch (e : Exception)
+        {
+            e.printStackTrace();
+            return;
+        }
 
         r.bindEquipmentOption(item, slot + 1, logic)
     }
@@ -205,7 +219,14 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         val def = world.definitions.get(ObjectDef::class.java, obj)
         val slot = def.options.indexOfFirst { it?.toLowerCase() == opt }
 
-        check(slot != -1) { "Option \"$option\" not found for object $obj [options=${def.options.filterNotNull().filter { it.isNotBlank() }}]" }
+        try {
+            check(slot != -1) { "Option \"$option\" not found for object $obj [options=${def.options.filterNotNull().filter { it.isNotBlank() }}]" }
+        }
+        catch (e : Exception)
+        {
+            e.printStackTrace();
+            return;
+        }
 
         r.bindObject(obj, slot + 1, lineOfSightDistance, logic)
     }
@@ -225,7 +246,14 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         val def = world.definitions.get(NpcDef::class.java, npc)
         val slot = def.options.indexOfFirst { it?.toLowerCase() == opt }
 
-        check(slot != -1) { "Option \"$option\" not found for npc $npc [options=${def.options.filterNotNull().filter { it.isNotBlank() }}]" }
+        try {
+            check(slot != -1) { "Option \"$option\" not found for npc $npc [options=${def.options.filterNotNull().filter { it.isNotBlank() }}]" }
+        }
+        catch (e : Exception)
+        {
+            e.printStackTrace();
+            return;
+        }
 
         r.bindNpc(npc, slot + 1, lineOfSightDistance, logic)
     }
@@ -240,7 +268,14 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         val def = world.definitions.get(ItemDef::class.java, item)
         val slot = def.groundMenu.indexOfFirst { it?.toLowerCase() == opt }
 
-        check(slot != -1) { "Option \"$option\" not found for ground item $item [options=${def.groundMenu.filterNotNull().filter { it.isNotBlank() }}]" }
+        try {
+            check(slot != -1) { "Option \"$option\" not found for ground item $item [options=${def.groundMenu.filterNotNull().filter { it.isNotBlank() }}]" }
+        }
+        catch (e : Exception)
+        {
+            e.printStackTrace();
+            return;
+        }
 
         r.bindGroundItem(item, slot + 1, logic)
     }
